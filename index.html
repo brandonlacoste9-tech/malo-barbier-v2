@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Malo Salon de Barbier — Le barbier le plus cool de Montréal</title>
+<meta name="description" content="Malo Salon de Barbier, 3418-A Avenue du Parc, Montréal. Santiago Vinces, maître barbier. Ouvert 7j/7, 10h–19h. Réservez sur Booksy, WhatsApp ou par texto.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c0a08; --bg2:#14100c; --bg3:#1b1510;
+  --amber:#c8862a; --copper:#a8641f; --cream:#f2e7d3; --muted:#b3a48c;
+  --steel:#2a2622; --line:#2e2620;
+  --green:#3d6b4f; --green-deep:#16281f;
+  --pole-red:#b3402e; --pole-blue:#2e4f8f; --pole-cream:#f2e7d3;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:'Inter',system-ui,sans-serif;overflow-x:hidden;
+  background-image:radial-gradient(1200px 600px at 80% -10%,rgba(200,134,42,.10),transparent 60%),
+                   radial-gradient(900px 500px at 10% 30%,rgba(120,70,20,.08),transparent 60%),
+                   radial-gradient(1000px 700px at 50% 110%,rgba(90,58,32,.10),transparent 60%);}
+::selection{background:var(--amber);color:#000}
+h1,h2,h3,.anton{font-family:'Anton',sans-serif;letter-spacing:.02em;text-transform:uppercase;line-height:.95}
+.osw{font-family:'Oswald',sans-serif}
+a{color:inherit}
+/* ---------- NAV ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+  padding:14px 28px;background:rgba(12,10,8,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.brand{font-family:'Anton';font-size:26px;letter-spacing:.06em;color:var(--cream);text-decoration:none}
+.brand span{color:var(--amber)}
+.navlinks{display:flex;gap:26px;align-items:center}
+.navlinks a.nl{font-family:'Oswald';font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+.navlinks a.nl:hover{color:var(--amber)}
+.btn-book{background:var(--amber);color:#111;font-family:'Oswald';font-weight:700;font-size:14px;letter-spacing:.12em;text-transform:uppercase;
+  padding:11px 22px;border:none;border-radius:3px;cursor:pointer;text-decoration:none;transition:transform .15s,box-shadow .15s}
+.btn-book:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(200,134,42,.35)}
+.langtoggle{display:flex;border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.langtoggle button{background:transparent;border:none;color:var(--muted);font-family:'Oswald';font-size:13px;letter-spacing:.1em;padding:8px 12px;cursor:pointer}
+.langtoggle button.on{background:var(--amber);color:#111;font-weight:700}
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:130px 6vw 80px;overflow:hidden}
+.hero-bg-glow{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(700px 500px at 65% 40%,rgba(200,134,42,.16),transparent 65%)}
+.hero-copy{position:relative;z-index:5;max-width:640px}
+.kicker{font-family:'Oswald';letter-spacing:.35em;text-transform:uppercase;color:var(--amber);font-size:14px;margin-bottom:18px}
+.hero h1{font-size:clamp(64px,9vw,132px);color:var(--cream);text-shadow:0 4px 40px rgba(0,0,0,.6)}
+.hero h1 .amber{color:var(--amber)}
+.hero-sub{font-family:'Oswald';font-size:clamp(19px,2.4vw,27px);letter-spacing:.06em;color:var(--cream);margin:22px 0 8px;text-transform:uppercase}
+.hero-sub em{color:var(--amber);font-style:normal}
+.hero-desc{color:var(--muted);font-size:17px;line-height:1.65;max-width:520px;margin-bottom:34px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.btn-ghost{border:2px solid var(--amber);color:var(--amber);background:transparent;font-family:'Oswald';font-weight:600;font-size:15px;
+  letter-spacing:.1em;text-transform:uppercase;padding:12px 26px;border-radius:3px;cursor:pointer;text-decoration:none;transition:all .2s}
+.btn-ghost:hover{background:rgba(200,134,42,.14)}
+.hero-stats{display:flex;gap:34px;margin-top:44px;flex-wrap:wrap}
+.hstat .n{font-family:'Anton';font-size:34px;color:var(--amber)}
+.hstat .l{font-family:'Oswald';font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+/* floating photo collage */
+.float-stage{position:absolute;inset:0;pointer-events:none;z-index:2}
+.fphoto{position:absolute;border-radius:6px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.65);
+  border:1px solid rgba(200,134,42,.28);animation:drift 9s ease-in-out infinite}
+.fphoto img{display:block;width:100%;height:100%;object-fit:cover}
+.fphoto .tag{position:absolute;left:10px;bottom:8px;font-family:'Oswald';font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--cream);background:rgba(0,0,0,.55);padding:4px 10px;border-radius:2px}
+@keyframes drift{0%,100%{transform:translateY(0) rotate(var(--rot,0deg))}50%{transform:translateY(-18px) rotate(var(--rot,0deg))}}
+.fp-main{width:min(380px,44vw);aspect-ratio:3/4;right:6vw;top:16vh;--rot:3deg;z-index:3}
+.fp-a{width:min(230px,28vw);aspect-ratio:4/5;right:34vw;top:52vh;--rot:-5deg;animation-delay:-3s}
+.fp-b{width:min(200px,24vw);aspect-ratio:1/1;right:8vw;top:66vh;--rot:6deg;animation-delay:-6s}
+.scrollhint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:var(--muted);font-family:'Oswald';
+  font-size:12px;letter-spacing:.3em;text-transform:uppercase;z-index:5;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
+/* ---------- SECTIONS ---------- */
+section{padding:100px 6vw;position:relative}
+.sec-head{max-width:1200px;margin:0 auto 54px}
+.sec-kick{font-family:'Oswald';letter-spacing:.32em;text-transform:uppercase;color:var(--amber);font-size:13px;margin-bottom:14px}
+.sec-title{font-size:clamp(40px,5.4vw,72px);color:var(--cream)}
+.sec-title .amber{color:var(--amber)}
+.sec-sub{color:var(--muted);font-size:17px;margin-top:14px;max-width:640px;line-height:1.6}
+.wrap{max-width:1200px;margin:0 auto}
+/* services */
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:18px}
+.svc{background:linear-gradient(160deg,var(--bg3),var(--bg2));border:1px solid var(--line);border-radius:8px;padding:30px 26px;
+  position:relative;overflow:hidden;transition:transform .2s,border-color .2s}
+.svc:hover{transform:translateY(-5px);border-color:var(--amber)}
+.svc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--copper),var(--amber))}
+.svc .ico{font-size:30px;margin-bottom:14px}
+.svc h3{font-family:'Oswald';font-weight:600;font-size:20px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:10px;color:var(--cream)}
+.svc p{color:var(--muted);font-size:14.5px;line-height:1.6;margin-bottom:16px}
+.svc .meta{display:flex;justify-content:space-between;align-items:center;font-family:'Oswald';font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+.svc .dur{color:var(--muted)}
+.svc .prx{color:var(--amber);font-weight:700}
+.svc-note{margin-top:26px;color:var(--muted);font-size:14px;text-align:center}
+.svc-note a{color:var(--amber)}
+/* barber spotlight */
+.spot{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.spot-photo{position:relative;min-height:480px}
+.spot-photo .fphoto{position:absolute}
+.sp-1{width:72%;aspect-ratio:3/4;left:0;top:0;--rot:-3deg}
+.sp-2{width:52%;aspect-ratio:1/1;right:0;bottom:0;--rot:4deg;animation-delay:-4s;border-color:rgba(200,134,42,.5)}
+.spot-copy .big{font-size:clamp(38px,4.6vw,64px);margin-bottom:20px}
+.spot-copy .big .amber{color:var(--amber)}
+.spot-copy p{color:var(--muted);font-size:16.5px;line-height:1.75;margin-bottom:16px}
+.spot-copy p strong{color:var(--cream)}
+.quote{border-left:4px solid var(--amber);padding:6px 0 6px 20px;margin:26px 0;font-style:italic;color:var(--cream);font-size:17px}
+.quote cite{display:block;font-style:normal;font-family:'Oswald';font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+/* boutique gallery */
+.gal-stage{position:relative;min-height:560px}
+.gal-stage .fphoto{position:absolute}
+.g-1{width:30%;aspect-ratio:4/5;left:2%;top:4%;--rot:-4deg}
+.g-2{width:26%;aspect-ratio:1/1;left:36%;top:0;--rot:3deg;animation-delay:-2s}
+.g-3{width:30%;aspect-ratio:4/3;right:2%;top:10%;--rot:-2deg;animation-delay:-5s}
+.g-4{width:24%;aspect-ratio:3/4;left:22%;bottom:0;--rot:5deg;animation-delay:-7s}
+.gal-cap{text-align:center;color:var(--muted);font-family:'Oswald';letter-spacing:.14em;text-transform:uppercase;font-size:13px;margin-top:26px}
+/* mascotte */
+.masc{background:linear-gradient(160deg,#171209,#0c0a08);border:1px solid rgba(200,134,42,.3);border-radius:12px;
+  display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;padding:56px;overflow:hidden;position:relative}
+.masc .fphoto{position:relative;width:100%;aspect-ratio:4/3;--rot:-2deg}
+.masc h3{font-size:clamp(34px,4vw,54px);margin-bottom:18px}
+.masc h3 .amber{color:var(--amber)}
+.masc p{color:var(--muted);font-size:16.5px;line-height:1.7}
+/* reviews */
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.rev{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:28px}
+.rev .stars{color:var(--amber);font-size:18px;letter-spacing:.2em;margin-bottom:14px}
+.rev p{font-size:15.5px;line-height:1.65;color:var(--cream);margin-bottom:14px}
+.rev .src{font-family:'Oswald';font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.rev-badges{display:flex;gap:16px;justify-content:center;margin-bottom:40px;flex-wrap:wrap}
+.badge{background:var(--bg3);border:1px solid var(--line);border-radius:40px;padding:12px 26px;font-family:'Oswald';
+  letter-spacing:.1em;font-size:15px;color:var(--cream)}
+.badge b{color:var(--amber)}
+/* booking */
+.book-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;max-width:1000px;margin:0 auto}
+.book-card{display:block;text-decoration:none;background:linear-gradient(160deg,var(--bg3),var(--bg2));border:1px solid var(--line);
+  border-radius:10px;padding:38px 28px;text-align:center;transition:all .2s}
+.book-card:hover{transform:translateY(-5px);border-color:var(--amber);box-shadow:0 16px 44px rgba(200,134,42,.18)}
+.book-card .bic{font-size:44px;margin-bottom:16px}
+.book-card h3{font-family:'Oswald';font-size:21px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.book-card p{color:var(--muted);font-size:14px;line-height:1.6}
+.book-card.main{background:linear-gradient(160deg,#3a2508,#1d130a);border-color:var(--amber)}
+/* hours + contact */
+.hc{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+.hours{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:40px}
+.hours h3{font-family:'Oswald';font-size:22px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:22px;color:var(--amber)}
+.hrow{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px dashed var(--line);font-size:15.5px}
+.hrow:last-child{border:none}
+.hrow .d{font-family:'Oswald';letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-size:14px}
+.hrow .t{color:var(--cream);font-weight:600}
+.today{background:rgba(200,134,42,.1);border-radius:4px;padding-left:10px;padding-right:10px}
+.contact-card h3{font-family:'Oswald';font-size:22px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:22px;color:var(--amber)}
+.crow{display:flex;gap:14px;align-items:center;margin-bottom:18px;font-size:16px;color:var(--cream);text-decoration:none}
+.crow .ci{font-size:22px}
+.crow small{display:block;color:var(--muted);font-size:13px}
+.mapbox{margin-top:26px;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.mapbox iframe{width:100%;height:320px;border:0;display:block;filter:grayscale(.35) sepia(.12)}
+/* footer */
+footer{border-top:1px solid var(--line);padding:44px 6vw;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+footer .fbrand{font-family:'Anton';font-size:22px}
+footer .fbrand span{color:var(--amber)}
+footer p{color:var(--muted);font-size:13.5px}
+footer .soc{display:flex;gap:14px}
+footer .soc a{color:var(--muted);text-decoration:none;font-family:'Oswald';font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+footer .soc a:hover{color:var(--amber)}
+/* ---------- CHAT WIDGET ---------- */
+#chatFab{position:fixed;right:24px;bottom:24px;z-index:200;width:64px;height:64px;border-radius:50%;border:2px solid var(--amber);
+  background:#1a140d;font-size:30px;cursor:pointer;box-shadow:0 10px 34px rgba(0,0,0,.6);transition:transform .2s}
+#chatFab:hover{transform:scale(1.08)}
+#chatPanel{position:fixed;right:24px;bottom:102px;z-index:200;width:min(380px,calc(100vw - 48px));height:520px;max-height:70vh;
+  background:rgba(20,15,10,.78);backdrop-filter:blur(22px) saturate(1.35);-webkit-backdrop-filter:blur(22px) saturate(1.35);
+  border:1px solid rgba(200,134,42,.45);border-radius:18px;display:none;flex-direction:column;overflow:hidden;
+  box-shadow:0 24px 70px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.06)}
+#chatPanel.open{display:flex}
+.chat-head{background:linear-gradient(120deg,#2a1c0a,#171208);padding:16px 18px;border-bottom:1px solid rgba(200,134,42,.3);
+  display:flex;align-items:center;gap:12px}
+.chat-head .avatar{width:44px;height:44px;border-radius:50%;background:var(--amber);display:flex;align-items:center;justify-content:center;font-size:24px}
+.chat-head .t b{display:block;font-family:'Oswald';letter-spacing:.06em;font-size:16px}
+.chat-head .t small{color:var(--muted);font-size:12px}
+.chat-head .x{margin-left:auto;background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer}
+#chatBody{flex:1;overflow-y:auto;padding:18px 14px;display:flex;flex-direction:column;gap:12px}
+.msg{max-width:84%;padding:11px 14px;border-radius:14px;font-size:14.5px;line-height:1.55;animation:pop .25s ease}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.msg.bot{background:#241b10;border:1px solid rgba(200,134,42,.25);align-self:flex-start;border-bottom-left-radius:4px}
+.msg.user{background:var(--amber);color:#14100c;font-weight:500;align-self:flex-end;border-bottom-right-radius:4px}
+.msg a{color:var(--amber);font-weight:600}
+.msg.user a{color:#14100c}
+.chips{display:flex;gap:8px;flex-wrap:wrap;align-self:flex-start}
+.chip{background:transparent;border:1px solid var(--amber);color:var(--amber);font-size:13px;font-family:'Oswald';letter-spacing:.04em;
+  padding:8px 14px;border-radius:20px;cursor:pointer;transition:all .15s}
+.chip:hover{background:var(--amber);color:#14100c}
+.chat-in{display:flex;border-top:1px solid var(--line)}
+.chat-in input{flex:1;background:#0e0b08;border:none;color:var(--cream);padding:15px 16px;font-size:14.5px;outline:none}
+.chat-in button{background:var(--amber);border:none;color:#14100c;font-size:18px;padding:0 20px;cursor:pointer;font-weight:700}
+/* marquee */
+.marquee{overflow:hidden;background:#0e0b08;padding:20px 0;position:relative;z-index:5}
+.mq-track{display:flex;width:max-content;animation:mq 26s linear infinite}
+.mq-track span{font-family:'Anton';font-size:clamp(24px,3.4vw,40px);letter-spacing:.05em;white-space:nowrap;padding-right:56px;
+  color:transparent;-webkit-text-stroke:1px rgba(200,134,42,.85)}
+.mq-track span.solid{color:var(--cream);-webkit-text-stroke:0}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* barber-pole divider — red/white/blue accent */
+.pole{height:9px;opacity:.92;
+  background:repeating-linear-gradient(-48deg,var(--pole-red) 0 24px,var(--pole-cream) 24px 48px,var(--pole-blue) 48px 72px,var(--pole-cream) 72px 96px);}
+/* warm old-wood panels */
+.wood-sec{background:
+  repeating-linear-gradient(93deg, rgba(0,0,0,.17) 0 2px, transparent 2px 150px),
+  repeating-linear-gradient(0deg, rgba(255,235,200,.016) 0 2px, transparent 2px 6px),
+  linear-gradient(180deg,#251b12,#150f09);}
+#boutique{background:radial-gradient(900px 520px at 50% 0%,rgba(61,107,79,.12),transparent 65%);}
+#mascotte .masc{background:linear-gradient(160deg,#12241c,#0c0a08 72%);border:1px solid rgba(61,107,79,.5);
+  box-shadow:0 20px 60px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.05);}
+#mascotte .sec-kick{color:#7fb08c;}
+.badge{border-color:rgba(61,107,79,.55)}
+footer{background:
+  repeating-linear-gradient(93deg, rgba(0,0,0,.2) 0 2px, transparent 2px 150px),
+  linear-gradient(180deg,#1e150d,#100c07);}
+.chat-head{background:linear-gradient(120deg,#1c2f25,#14100c);}
+.msg.bot{border-color:rgba(61,107,79,.4)}
+/* reveal */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+/* responsive */
+@media(max-width:900px){
+  .spot,.masc,.hc{grid-template-columns:1fr}
+  .masc{padding:34px}
+  .fp-main{width:52vw;right:4vw;top:14vh}
+  .fp-a{display:none}.fp-b{width:34vw;top:auto;bottom:12vh}
+  .spot-photo{min-height:420px}
+  .gal-stage{min-height:480px}
+  .navlinks a.nl{display:none}
+  section{padding:70px 6vw}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="#top">MALO <span>·</span> BARBIER</a>
+  <div class="navlinks">
+    <a class="nl" href="#services" data-fr="Services" data-en="Services">Services</a>
+    <a class="nl" href="#barbier" data-fr="Le Barbier" data-en="The Barber">Le Barbier</a>
+    <a class="nl" href="#boutique" data-fr="La Boutique" data-en="The Shop">La Boutique</a>
+    <a class="nl" href="#avis" data-fr="Avis" data-en="Reviews">Avis</a>
+    <a class="nl" href="#contact" data-fr="Contact" data-en="Contact">Contact</a>
+    <div class="langtoggle"><button id="btnFR" class="on">FR</button><button id="btnEN">EN</button></div>
+    <a class="btn-book" href="#reserver" data-fr="Réserver" data-en="Book now">Réserver</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-bg-glow"></div>
+  <div class="float-stage" id="heroStage">
+    <div class="fphoto fp-main" data-depth="0.06"><img src="photos/santiago.jpg" alt="Santiago — rasage serviette chaude"><span class="tag" data-fr="Le rituel serviette chaude" data-en="The hot-towel ritual">Le rituel serviette chaude</span></div>
+    <div class="fphoto fp-a" data-depth="0.14"><img src="photos/ig-cut.jpg" alt="Dégradé net à la fenêtre"><span class="tag">💈</span></div>
+    <div class="fphoto fp-b" data-depth="0.10"><img src="photos/shop1.jpg" alt="La boutique, avenue du Parc"><span class="tag" data-fr="Avenue du Parc" data-en="Park Avenue">Avenue du Parc</span></div>
+  </div>
+  <div class="hero-copy">
+    <div class="kicker" data-fr="Salon de barbier · Montréal" data-en="Barbershop · Montréal">Salon de barbier · Montréal</div>
+    <h1>MALO<br><span class="amber" data-fr="LE BARBIER" data-en="THE BARBER">LE BARBIER</span></h1>
+    <div class="hero-sub" data-fr="Le barbier <em>le plus cool</em> de Montréal." data-en="The <em>coolest</em> barber in Montréal.">Le barbier <em>le plus cool</em> de Montréal.</div>
+    <p class="hero-desc" data-fr="Serviettes chaudes, lame droite, dégradés nets. Chez Malo, la coupe n'est pas un service — c'est un rituel. Santiago veille sur chaque détail, comme sur son pitbull." data-en="Hot towels, straight razor, sharp fades. At Malo's, a cut isn't a service — it's a ritual. Santiago watches over every detail, just like he watches over his pitbull.">Serviettes chaudes, lame droite, dégradés nets. Chez Malo, la coupe n'est pas un service — c'est un rituel. Santiago veille sur chaque détail, comme sur son pitbull.</p>
+    <div class="hero-ctas">
+      <a class="btn-book" href="https://booksy.com/en-ca/18766_malo-salon-de-barbier_barbershop_1128877_montreal" target="_blank" rel="noopener" data-fr="Réserver sur Booksy" data-en="Book on Booksy">Réserver sur Booksy</a>
+      <a class="btn-ghost" href="https://wa.link" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="n">4.9★</div><div class="l" data-fr="353 avis Google" data-en="353 Google reviews">353 avis Google</div></div>
+      <div class="hstat"><div class="n">5.0★</div><div class="l" data-fr="40 avis Booksy" data-en="40 Booksy reviews">40 avis Booksy</div></div>
+      <div class="hstat"><div class="n">7j/7</div><div class="l" data-fr="10h – 19h" data-en="10 AM – 7 PM">10h – 19h</div></div>
+    </div>
+  </div>
+  <div class="scrollhint" data-fr="Défiler" data-en="Scroll">Défiler</div>
+</header>
+
+<!-- SERVICES -->
+<div class="pole" aria-hidden="true"></div>
+<div class="marquee" aria-hidden="true"><div class="mq-track">
+<span>SERVIETTES CHAUDES ✦</span><span class="solid">STRAIGHT RAZOR ✦</span><span>SANS RENDEZ-VOUS ✦</span><span class="solid">WALK-INS WELCOME ✦</span><span>HABLAMOS ESPAÑOL ✦</span><span class="solid">MALO BARBIER ✦</span>
+<span>SERVIETTES CHAUDES ✦</span><span class="solid">STRAIGHT RAZOR ✦</span><span>SANS RENDEZ-VOUS ✦</span><span class="solid">WALK-INS WELCOME ✦</span><span>HABLAMOS ESPAÑOL ✦</span><span class="solid">MALO BARBIER ✦</span>
+</div></div>
+<div class="pole" aria-hidden="true"></div>
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-kick" data-fr="Le menu" data-en="The menu">Le menu</div>
+      <h2 class="sec-title" data-fr="Des lames, <span class='amber'>pas des promesses</span>" data-en="Sharp blades, <span class='amber'>no gimmicks</span>">Des lames, <span class="amber">pas des promesses</span></h2>
+      <p class="sec-sub" data-fr="Chaque service est fait à l'ancienne, avec les bons produits et le temps qu'il faut." data-en="Every service done the old-school way, with the right products and the time it takes.">Chaque service est fait à l'ancienne, avec les bons produits et le temps qu'il faut.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc rv"><div class="ico">✂️</div><h3 data-fr="Coupe de cheveux" data-en="Haircut">Coupe de cheveux</h3><p data-fr="Tous les styles, toutes les complexités. Coiffage et contour à la lame inclus." data-en="All styles, all complexities. Styling and blade outline included.">Tous les styles, toutes les complexités. Coiffage et contour à la lame inclus.</p><div class="meta"><span class="dur">30–45 min</span><span class="prx" data-fr="Prix en salon" data-en="In-shop pricing">Prix en salon</span></div></div>
+      <div class="svc rv"><div class="ico">📐</div><h3>Line-up</h3><p data-fr="Contour net à la lame. Le service express entre deux coupes." data-en="Sharp blade outline. The quick service between cuts.">Contour net à la lame. Le service express entre deux coupes.</p><div class="meta"><span class="dur">15–30 min</span><span class="prx" data-fr="Prix en salon" data-en="In-shop pricing">Prix en salon</span></div></div>
+      <div class="svc rv"><div class="ico">👦</div><h3 data-fr="Enfants 1–14" data-en="Kids 1–14">Enfants 1–14</h3><p data-fr="La coupe des petits, avec patience. Ils repartent fiers." data-en="The little ones' cut, with patience. They leave proud.">La coupe des petits, avec patience. Ils repartent fiers.</p><div class="meta"><span class="dur">30–45 min</span><span class="prx" data-fr="Prix en salon" data-en="In-shop pricing">Prix en salon</span></div></div>
+      <div class="svc rv"><div class="ico">🧔</div><h3 data-fr="Barbe / moustache rapido" data-en="Beard / moustache rapido">Barbe / moustache rapido</h3><p data-fr="Taille et contour à la lame. Net, rapide, efficace." data-en="Trim and blade outline. Clean, quick, sharp.">Taille et contour à la lame. Net, rapide, efficace.</p><div class="meta"><span class="dur">15–30 min</span><span class="prx" data-fr="Prix en salon" data-en="In-shop pricing">Prix en salon</span></div></div>
+      <div class="svc rv"><div class="ico">🪒</div><h3 data-fr="Rasage old-school" data-en="Old-school shave">Rasage old-school</h3><p data-fr="Serviettes chaudes, soin de barbe et contour à la lame, baume et/ou huile. Le rituel." data-en="Hot towels, beard care and blade outline, balm and/or oil. The ritual.">Serviettes chaudes, soin de barbe et contour à la lame, baume et/ou huile. Le rituel.</p><div class="meta"><span class="dur">30 min</span><span class="prx" data-fr="Dès 30 $ (Booksy)" data-en="From $30 (Booksy)">Dès 30 $ (Booksy)</span></div></div>
+      <div class="svc rv"><div class="ico">🎨</div><h3 data-fr="Teinture de barbe" data-en="Beard tint">Teinture de barbe</h3><p data-fr="Couvre le gris ou redéfinit le contour. Fini net, naturel." data-en="Grey coverage or sharp definition. Clean, natural finish.">Couvre le gris ou redéfinit le contour. Fini net, naturel.</p><div class="meta"><span class="dur">15–30 min</span><span class="prx" data-fr="Prix en salon" data-en="In-shop pricing">Prix en salon</span></div></div>
+      <div class="svc rv"><div class="ico">✨</div><h3>Facial</h3><p data-fr="Exfoliation vapeur, serviettes chaudes et froides, masque, hydratant. Peau de neuf." data-en="Steam exfoliation, hot and cold towels, mask, moisturizer. Brand-new skin.">Exfoliation vapeur, serviettes chaudes et froides, masque, hydratant. Peau de neuf.</p><div class="meta"><span class="dur">30 min</span><span class="prx" data-fr="Prix en salon" data-en="In-shop pricing">Prix en salon</span></div></div>
+      <div class="svc rv"><div class="ico">🔥</div><h3 data-fr="Cheveux + barbe" data-en="Hair + beard">Cheveux + barbe</h3><p data-fr="Le combo complet, sur Booksy. Tu ressors transformé." data-en="The full combo, on Booksy. You walk out transformed.">Le combo complet, sur Booksy. Tu ressors transformé.</p><div class="meta"><span class="dur">1 h 15</span><span class="prx">Booksy</span></div></div>
+    </div>
+    <p class="svc-note rv"><span data-fr="Prix affichés au salon et sur " data-en="Prices posted in-shop and on ">Prix affichés au salon et sur </span><a href="https://booksy.com/en-ca/18766_malo-salon-de-barbier_barbershop_1128877_montreal" target="_blank" rel="noopener">Booksy</a>.</p>
+  </div>
+</section>
+
+<!-- LE BARBIER -->
+<section id="barbier" style="background:linear-gradient(180deg,transparent,rgba(200,134,42,.05),transparent)">
+  <div class="wrap spot">
+    <div class="spot-photo rv">
+      <div class="fphoto sp-1" data-depth="0.08"><img src="photos/santiago.jpg" alt="Santiago, maître barbier"></div>
+      <div class="fphoto sp-2" data-depth="0.16"><img src="photos/ig-interior.jpg" alt="Santiago coupe à la fenêtre"></div>
+    </div>
+    <div class="spot-copy rv">
+      <div class="sec-kick" data-fr="Le patron" data-en="The boss">Le patron</div>
+      <h2 class="big" data-fr="SANTIAGO<br><span class='amber'>VINCES</span>" data-en="SANTIAGO<br><span class='amber'>VINCES</span>">SANTIAGO<br><span class="amber">VINCES</span></h2>
+      <p data-fr="<strong>Maître barbier, proprio, perfectionniste.</strong> Santiago ne fait pas semblant : chaque dégradé est sculpté, chaque contour est tiré à la lame, chaque serviette est chaude pour vrai." data-en="<strong>Master barber, owner, perfectionist.</strong> Santiago doesn't fake it: every fade is sculpted, every outline is razor-drawn, every towel is genuinely hot."><strong>Maître barbier, proprio, perfectionniste.</strong> Santiago ne fait pas semblant : chaque dégradé est sculpté, chaque contour est tiré à la lame, chaque serviette est chaude pour vrai.</p>
+      <p data-fr="L'ambiance est à l'ancienne — cuir, acier, vapeur — mais l'accueil est chaleureux. Ici on parle français, anglais et espagnol, et les walk-ins sont toujours les bienvenus." data-en="The vibe is old-school — leather, steel, steam — but the welcome is warm. Here we speak French, English and Spanish, and walk-ins are always welcome.">L'ambiance est à l'ancienne — cuir, acier, vapeur — mais l'accueil est chaleureux. Ici on parle français, anglais et espagnol, et les walk-ins sont toujours les bienvenus.</p>
+      <div class="quote"><span data-fr="« Excellent service !!!! Santiago est super gentil et son prix est juste. L'endroit est propre et bien décoré. »" data-en="&ldquo;Excellent service!!!! Santiago is super nice and his Price is fair. The place is clean and well decorated.&rdquo;">« Excellent service !!!! Santiago est super gentil et son prix est juste. L'endroit est propre et bien décoré. »</span><cite>— Google review</cite></div>
+    </div>
+  </div>
+</section>
+
+<!-- LA BOUTIQUE -->
+<section id="boutique">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-kick" data-fr="La boutique" data-en="The shop">La boutique</div>
+      <h2 class="sec-title" data-fr="3418-A, <span class='amber'>avenue du Parc</span>" data-en="3418-A, <span class='amber'>Park Avenue</span>">3418-A, <span class="amber">avenue du Parc</span></h2>
+      <p class="sec-sub" data-fr="En plein centre-ville de Montréal. La chaise t'attend — avec ou sans rendez-vous." data-en="Right downtown Montréal. The chair is waiting — appointment or not.">En plein centre-ville de Montréal. La chaise t'attend — avec ou sans rendez-vous.</p>
+    </div>
+    <div class="gal-stage rv" id="galStage">
+      <div class="fphoto g-1" data-depth="0.10"><img src="photos/shop1.jpg" alt="La boutique"><span class="tag" data-fr="La devanture" data-en="The storefront">La devanture</span></div>
+      <div class="fphoto g-2" data-depth="0.18"><img src="photos/ig-cut.jpg" alt="Dégradé à la fenêtre"><span class="tag" data-fr="À la fenêtre" data-en="By the window">À la fenêtre</span></div>
+      <div class="fphoto g-3" data-depth="0.07"><img src="photos/ig-interior.jpg" alt="Intérieur de la boutique"><span class="tag" data-fr="L'atelier" data-en="The workshop">L'atelier</span></div>
+      <div class="fphoto g-4" data-depth="0.14"><img src="photos/santiago.jpg" alt="Le rituel"><span class="tag" data-fr="Le rituel" data-en="The ritual">Le rituel</span></div>
+    </div>
+    <p class="gal-cap" data-fr="Serviettes chaudes · lame droite · sans rendez-vous · hablamos español" data-en="Hot towels · straight razor · walk-ins welcome · hablamos español">Serviettes chaudes · lame droite · sans rendez-vous · hablamos español</p>
+  </div>
+</section>
+
+<!-- LA MASCOTTE -->
+<section id="mascotte" style="padding-top:40px">
+  <div class="wrap">
+    <div class="masc rv">
+      <div class="fphoto" data-depth="0.05"><img src="photos/ig-cut.jpg" alt="Le pitbull, emblème de la boutique, sur la vitrine"><span class="tag">🐶</span></div>
+      <div>
+        <div class="sec-kick" data-fr="La mascotte" data-en="The mascot">La mascotte</div>
+        <h3 data-fr="Le pitbull <span class='amber'>veille</span> sur la boutique" data-en="The pitbull <span class='amber'>watches</span> over the shop">Le pitbull <span class="amber">veille</span> sur la boutique</h3>
+        <p data-fr="Tu l'as vu sur la vitrine du 3418-A : le pitbull, c'est l'emblème de la maison. Fidèle, solide, sans détour — exactement comme une bonne coupe chez Malo. Santiago l'adore, et il veille sur chaque client qui passe la porte." data-en="You've seen him on the window at 3418-A: the pitbull is the house emblem. Loyal, solid, no-nonsense — exactly like a good cut at Malo's. Santiago loves him, and he watches over every client who walks through the door.">Tu l'as vu sur la vitrine du 3418-A : le pitbull, c'est l'emblème de la maison. Fidèle, solide, sans détour — exactement comme une bonne coupe chez Malo. Santiago l'adore, et il veille sur chaque client qui passe la porte.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AVIS -->
+<section id="avis">
+  <div class="wrap">
+    <div class="sec-head rv" style="text-align:center">
+      <div class="sec-kick" data-fr="Ils en parlent" data-en="Word on the street">Ils en parlent</div>
+      <h2 class="sec-title" data-fr="Les clients <span class='amber'>reviennent</span>" data-en="Clients <span class='amber'>keep coming back</span>">Les clients <span class="amber">reviennent</span></h2>
+    </div>
+    <div class="rev-badges rv">
+      <div class="badge"><b>4.9★</b> · <span data-fr="353 avis Google" data-en="353 Google reviews">353 avis Google</span></div>
+      <div class="badge"><b>5.0★</b> · <span data-fr="40 avis Booksy" data-en="40 Booksy reviews">40 avis Booksy</span></div>
+    </div>
+    <div class="rev-grid">
+      <div class="rev rv"><div class="stars">★★★★★</div><p>« 10/10 every time. »</p><div class="src">Google</div></div>
+      <div class="rev rv"><div class="stars">★★★★★</div><p>« Favorite barber in Montreal, always recommend. »</p><div class="src">Google</div></div>
+      <div class="rev rv"><div class="stars">★★★★★</div><p>« Excellent service!!!! Santiago is super nice and his Price is fair. The place is clean and well decorated. »</p><div class="src">Google</div></div>
+      <div class="rev rv"><div class="stars">★★★★★</div><p>« Super ambiance et le patron est très sympa. »</p><div class="src">Google</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVER -->
+<section id="reserver" class="wood-sec">
+  <div class="wrap">
+    <div class="sec-head rv" style="text-align:center">
+      <div class="sec-kick" data-fr="Prends ta chaise" data-en="Claim your chair">Prends ta chaise</div>
+      <h2 class="sec-title" data-fr="Réserve <span class='amber'>ton rituel</span>" data-en="Book <span class='amber'>your ritual</span>">Réserve <span class="amber">ton rituel</span></h2>
+      <p class="sec-sub" style="margin-left:auto;margin-right:auto" data-fr="Trois façons de réserver. Et les walk-ins sont toujours bienvenus — sans rendez-vous." data-en="Three ways to book. And walk-ins are always welcome — no appointment needed.">Trois façons de réserver. Et les walk-ins sont toujours bienvenus — sans rendez-vous.</p>
+    </div>
+    <div class="book-grid">
+      <a class="book-card main rv" href="https://booksy.com/en-ca/18766_malo-salon-de-barbier_barbershop_1128877_montreal" target="_blank" rel="noopener">
+        <div class="bic">📅</div><h3>Booksy</h3>
+        <p data-fr="Réserve en ligne, choisis ton barbier et ton heure." data-en="Book online — pick your barber and your time.">Réserve en ligne, choisis ton barbier et ton heure.</p>
+      </a>
+      <a class="book-card rv" href="https://wa.link" target="_blank" rel="noopener">
+        <div class="bic">💬</div><h3>WhatsApp</h3>
+        <p data-fr="Écris-nous direct, on te répond vite." data-en="Message us directly, we answer fast.">Écris-nous direct, on te répond vite.</p>
+      </a>
+      <a class="book-card rv" href="tel:+14389957921">
+        <div class="bic">📞</div><h3 data-fr="Appeler / Texto" data-en="Call / Text">Appeler / Texto</h3>
+        <p>(438) 995-7921<br><span data-fr="Appelle ou texte, c'est simple." data-en="Call or text, nice and simple.">Appelle ou texte, c'est simple.</span></p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- HORAIRES + CONTACT -->
+<section id="contact">
+  <div class="wrap hc">
+    <div class="hours rv">
+      <h3 data-fr="Heures d'ouverture" data-en="Opening hours">Heures d'ouverture</h3>
+      <div id="hoursRows"></div>
+      <p style="margin-top:18px;color:var(--muted);font-size:14px" data-fr="Ouvert 7 jours sur 7 — oui, même le dimanche. 💪" data-en="Open 7 days a week — yes, even Sunday. 💪">Ouvert 7 jours sur 7 — oui, même le dimanche. 💪</p>
+    </div>
+    <div class="contact-card rv">
+      <h3 data-fr="Nous trouver" data-en="Find us">Nous trouver</h3>
+      <a class="crow" href="https://www.google.com/maps/search/?api=1&query=Malo+Barbier+3418-A+Avenue+du+Parc+Montreal" target="_blank" rel="noopener"><span class="ci">📍</span><span>3418-A Avenue du Parc<br><small>Montréal, QC H2X 2H5</small></span></a>
+      <a class="crow" href="tel:+14389957921"><span class="ci">📞</span><span>(438) 995-7921<br><small data-fr="Appel ou texto" data-en="Call or text">Appel ou texto</small></span></a>
+      <a class="crow" href="mailto:malobarbiermtl@gmail.com"><span class="ci">✉️</span><span>malobarbiermtl@gmail.com</span></a>
+      <a class="crow" href="https://www.instagram.com/malo_barbershop" target="_blank" rel="noopener"><span class="ci">📸</span><span>@malo_barbershop<br><small>Instagram</small></span></a>
+      <div class="mapbox"><iframe title="Malo Salon de Barbier — carte" src="https://maps.google.com/maps?q=Malo+Barbier+3418-A+Avenue+du+Parc+Montreal&z=16&output=embed" loading="lazy"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<div class="pole" aria-hidden="true"></div>
+<footer>
+  <div class="fbrand">MALO <span>·</span> BARBIER</div>
+  <p data-fr="© 2026 Malo Salon de Barbier — 3418-A Avenue du Parc, Montréal. Site démo par Lacoste Designs." data-en="© 2026 Malo Salon de Barbier — 3418-A Park Avenue, Montréal. Demo site by Lacoste Designs.">© 2026 Malo Salon de Barbier — 3418-A Avenue du Parc, Montréal. Site démo par Lacoste Designs.</p>
+  <div class="soc">
+    <a href="https://www.instagram.com/malo_barbershop" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://booksy.com/en-ca/18766_malo-salon-de-barbier_barbershop_1128877_montreal" target="_blank" rel="noopener">Booksy</a>
+  </div>
+</footer>
+
+<!-- AI BARBER ASSISTANT -->
+<button id="chatFab" aria-label="Assistant Malo">💈</button>
+<div id="chatPanel" role="dialog" aria-label="Assistant Malo">
+  <div class="chat-head">
+    <div class="avatar">💈</div>
+    <div class="t"><b>Assistant Malo</b><small data-fr="Le bras droit du barbier · répond instantanément" data-en="The barber's right hand · answers instantly">Le bras droit du barbier · répond instantanément</small></div>
+    <button class="x" id="chatClose" aria-label="Fermer">×</button>
+  </div>
+  <div id="chatBody"></div>
+  <div class="chat-in">
+    <input id="chatInput" type="text" data-fr-ph="Écris ta question…" data-en-ph="Ask your question…" placeholder="Écris ta question…">
+    <button id="chatSend" aria-label="Envoyer">➤</button>
+  </div>
+</div>
+
+<script>
+/* ============ LANG ============ */
+let lang = 'fr';
+const btnFR = document.getElementById('btnFR'), btnEN = document.getElementById('btnEN');
+const chatInput = document.getElementById('chatInput');
+function setLang(l){
+  lang = l;
+  document.documentElement.lang = l;
+  document.querySelectorAll('[data-fr]').forEach(el=>{ el.innerHTML = el.dataset[l]; });
+  chatInput.placeholder = chatInput.dataset[l+'Ph'];
+  btnFR.classList.toggle('on', l==='fr');
+  btnEN.classList.toggle('on', l==='en');
+  renderHours();
+}
+btnFR.onclick = ()=>setLang('fr');
+btnEN.onclick = ()=>setLang('en');
+
+/* ============ HOURS ============ */
+const DAYS = {
+  fr:['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
+  en:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+};
+function renderHours(){
+  const box = document.getElementById('hoursRows');
+  const today = new Date().getDay(); // 0 = Sunday
+  const order = [1,2,3,4,5,6,0]; // Monday first
+  box.innerHTML = order.map(d=>{
+    const t = lang==='fr' ? '10h00 – 19h00' : '10:00 AM – 7:00 PM';
+    const cls = d===today ? 'hrow today' : 'hrow';
+    return `<div class="${cls}"><span class="d">${DAYS[lang][d]}</span><span class="t">${t}</span></div>`;
+  }).join('');
+}
+renderHours();
+
+/* ============ REVEAL ============ */
+const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+/* ============ PARALLAX (floating photos) ============ */
+const floats = document.querySelectorAll('.fphoto[data-depth]');
+let ticking = false;
+function parallax(){
+  const y = window.scrollY;
+  floats.forEach(el=>{
+    const d = parseFloat(el.dataset.depth);
+    el.style.translate = `0 ${(-y*d).toFixed(1)}px`;
+  });
+  ticking = false;
+}
+window.addEventListener('scroll', ()=>{ if(!ticking){ requestAnimationFrame(parallax); ticking = true; } }, {passive:true});
+parallax();
+
+/* ============ AI BARBER ASSISTANT ============ */
+const BOOKSY = 'https://booksy.com/en-ca/18766_malo-salon-de-barbier_barbershop_1128877_montreal';
+const booksyLink = (t)=>`<a href="${BOOKSY}" target="_blank" rel="noopener">${t}</a>`;
+const fab = document.getElementById('chatFab');
+const panel = document.getElementById('chatPanel');
+const body = document.getElementById('chatBody');
+const sendBtn = document.getElementById('chatSend');
+let greeted = false, awaitingVibe = false;
+
+fab.onclick = ()=>{
+  panel.classList.toggle('open');
+  if(panel.classList.contains('open') && !greeted){ greeted = true; botSay(greet()); showChips(chipsMain()); }
+};
+document.getElementById('chatClose').onclick = ()=>panel.classList.remove('open');
+
+function greet(){
+  return lang==='fr'
+    ? "Salut! 👋 Bienvenue chez <b>Malo</b> — le barbier le plus cool de Montréal. Je peux t'aider avec les prix, les heures ou la réservation. Qu'est-ce qui te ferait plaisir?"
+    : "Hey! 👋 Welcome to <b>Malo</b> — the coolest barber in Montréal. I can help with prices, hours or booking. What can I do for you?";
+}
+function chipsMain(){
+  return lang==='fr' ? ["Voir les prix 💈","Réserver","Heures d'ouverture"] : ["See prices 💈","Book now","Opening hours"];
+}
+function addMsg(html, who){
+  const d = document.createElement('div');
+  d.className = 'msg '+who; d.innerHTML = html;
+  body.appendChild(d); body.scrollTop = body.scrollHeight;
+  return d;
+}
+function botSay(html){
+  const t = addMsg('<span style="opacity:.6">…</span>','bot');
+  setTimeout(()=>{ t.innerHTML = html; body.scrollTop = body.scrollHeight; }, 550);
+}
+function showChips(list){
+  const w = document.createElement('div'); w.className = 'chips';
+  list.forEach(c=>{
+    const b = document.createElement('button'); b.className='chip'; b.textContent = c;
+    b.onclick = ()=>{ w.remove(); userSay(c); };
+    w.appendChild(b);
+  });
+  body.appendChild(w); body.scrollTop = body.scrollHeight;
+}
+function userSay(text){
+  addMsg(text.replace(/</g,'&lt;'), 'user');
+  setTimeout(()=>botReply(text), 350);
+}
+function has(s, words){ return words.some(w=>s.includes(w)); }
+
+function botReply(raw){
+  const s = ' '+raw.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')+' ';
+
+  /* vibe follow-up (cut recommendation) */
+  if(awaitingVibe){
+    awaitingVibe = false;
+    if(has(s,['court','clean','sharp','net'])){
+      return botSay(lang==='fr'
+        ? "✂️ Va pour le <b>dégradé net + line-up à la lame</b> — le combo signature qui ne rate jamais. Réserve ton rituel sur "+booksyLink('Booksy')+"! 💈"
+        : "✂️ Go for the <b>sharp fade + blade line-up</b> — the signature combo that never misses. Book your ritual on "+booksyLink('Booksy')+"! 💈");
+    }
+    if(has(s,['classique','classic'])){
+      return botSay(lang==='fr'
+        ? "🪒 Classique = le <b>rasage old-school</b> : serviettes chaudes, lame droite, baume. 30 min de pur rituel, dès 30 $ sur "+booksyLink('Booksy')+"."
+        : "🪒 Classic = the <b>old-school shave</b>: hot towels, straight razor, balm. 30 min of pure ritual, from $30 on "+booksyLink('Booksy')+".");
+    }
+    if(has(s,['audacieux','bold'])){
+      return botSay(lang==='fr'
+        ? "🔥 Audacieux : <b>teinture de barbe</b> pour un contour redéfini + une coupe bien texturée. Tu vas tourner des têtes."
+        : "🔥 Bold: <b>beard tint</b> for razor-sharp definition + a textured cut. You'll turn heads.");
+    }
+  }
+
+  /* recommendation */
+  if(has(s,['quelle coupe','what cut','conseil','recommand','suggestion','quel style','idee','idea','quelle coiffure','what should'])){
+    awaitingVibe = true;
+    botSay(lang==='fr' ? "Bonne question! 👌 C'est quoi ton vibe — plutôt :" : "Good question! 👌 What's your vibe — more:");
+    setTimeout(()=>showChips(lang==='fr' ? ["Court & net ✂️","Classique 🪒","Audacieux 🔥"] : ["Sharp & clean ✂️","Classic 🪒","Bold 🔥"]), 700);
+    return;
+  }
+  /* dog / mascot */
+  if(has(s,['chien','dog','pitbull','mascotte','mascot'])){
+    return botSay(lang==='fr'
+      ? "🐶 Ah, le pitbull! C'est <b>l'emblème de la boutique</b> — tu le vois sur la vitrine du 3418-A. Fidèle, solide, sans détour : exactement comme une bonne coupe chez Malo. Santiago l'adore."
+      : "🐶 Ah, the pitbull! He's <b>the shop's emblem</b> — you'll spot him on the window at 3418-A. Loyal, solid, no-nonsense: exactly like a good cut at Malo's. Santiago loves him.");
+  }
+  /* hours */
+  if(has(s,['heure','hour','ouvert','open','horaire','hora','ferm','quand','when','dimanche','sunday'])){
+    return botSay(lang==='fr'
+      ? "🕙 Ouvert <b>7j/7, de 10h à 19h</b> — oui, même le dimanche. 💪"
+      : "🕙 Open <b>7 days a week, 10 AM to 7 PM</b> — yes, even Sunday. 💪");
+  }
+  /* prices */
+  if(has(s,['prix','price','combien','cost','tarif','$','charge'])){
+    return botSay(lang==='fr'
+      ? "💈 La plupart des prix sont affichés au salon — mais je peux te dire que le <b>rasage serviette chaude est à partir de 30 $</b> sur "+booksyLink('Booksy')+". 🪒 Le combo cheveux + barbe (1 h 15) est aussi sur Booksy."
+      : "💈 Most prices are posted in-shop — but the <b>hot-towel shave starts at $30</b> on "+booksyLink('Booksy')+". 🪒 The hair + beard combo (1h15) is on Booksy too.");
+  }
+  /* booking */
+  if(has(s,['reserv','book','rendez-vous','rendez vous','rdv','appointment'])){
+    return botSay(lang==='fr'
+      ? "📅 3 façons de réserver : <b>"+booksyLink('Booksy')+"</b> (en ligne, tu choisis ton heure) · 💬 <a href='https://wa.link' target='_blank' rel='noopener'>WhatsApp</a> · 📞 texto ou appel au <b>(438) 995-7921</b>. Et les walk-ins sont toujours bienvenus — <i>sans rendez-vous</i>! 🚶"
+      : "📅 3 ways to book: <b>"+booksyLink('Booksy')+"</b> (online, pick your time) · 💬 <a href='https://wa.link' target='_blank' rel='noopener'>WhatsApp</a> · 📞 text or call <b>(438) 995-7921</b>. And walk-ins are always welcome — <i>sans rendez-vous</i>! 🚶");
+  }
+  /* services */
+  if(has(s,['service','que faites','what do you','menu','prestation'])){
+    return botSay(lang==='fr'
+      ? "✂️ <b>Coupe</b> (30–45 min) · 📐 <b>Line-up</b> (15–30) · 👦 <b>Enfants 1–14</b> (30–45) · 🧔 <b>Barbe rapido</b> (15–30) · 🪒 <b>Rasage old-school</b> (30 min) · 🎨 <b>Teinture de barbe</b> (15–30) · ✨ <b>Facial</b> (30 min) · 🔥 <b>Cheveux + barbe</b> (1 h 15)"
+      : "✂️ <b>Haircut</b> (30–45 min) · 📐 <b>Line-up</b> (15–30) · 👦 <b>Kids 1–14</b> (30–45) · 🧔 <b>Beard rapido</b> (15–30) · 🪒 <b>Old-school shave</b> (30 min) · 🎨 <b>Beard tint</b> (15–30) · ✨ <b>Facial</b> (30 min) · 🔥 <b>Hair + beard</b> (1h15)");
+  }
+  /* address */
+  if(has(s,['adresse','address','ou etes','where','trouver','find us','location','parc','stationnement','parking','metro'])){
+    return botSay(lang==='fr'
+      ? "📍 <b>3418-A Avenue du Parc, Montréal QC H2X 2H5</b> — en plein centre-ville."
+      : "📍 <b>3418-A Park Avenue, Montréal QC H2X 2H5</b> — right downtown.");
+  }
+  /* phone */
+  if(has(s,['telephone','phone','numero','number','appeler','call','contact','texto','text me','email','courriel'])){
+    return botSay("📞 <b>(438) 995-7921</b> — "+(lang==='fr'?'appel ou texto':'call or text')+". ✉️ malobarbiermtl@gmail.com");
+  }
+  /* beard */
+  if(has(s,['barbe','beard','moustache'])){
+    return botSay(lang==='fr'
+      ? "🧔 <b>Barbe / moustache rapido</b> : taille + contour à la lame, 15–30 min. Net et précis."
+      : "🧔 <b>Beard / moustache rapido</b>: trim + blade outline, 15–30 min. Clean and sharp.");
+  }
+  /* kids */
+  if(has(s,['enfant','kid','child','junior','petit'])){
+    return botSay(lang==='fr'
+      ? "👦 On coupe les enfants de <b>1 à 14 ans</b> (30–45 min) — avec patience, ils repartent fiers."
+      : "👦 We cut kids <b>ages 1–14</b> (30–45 min) — patiently, they leave proud.");
+  }
+  /* shave */
+  if(has(s,['rasage','shave','razor'])){
+    return botSay(lang==='fr'
+      ? "🪒 Le <b>rasage old-school</b> : serviettes chaudes, lame droite, baume/huile — 30 min de pur rituel. Dès 30 $ sur "+booksyLink('Booksy')+"."
+      : "🪒 The <b>old-school shave</b>: hot towels, straight razor, balm/oil — 30 min of pure ritual. From $30 on "+booksyLink('Booksy')+".");
+  }
+  /* tint */
+  if(has(s,['teinture','tint','gris','grey','gray'])){
+    return botSay(lang==='fr'
+      ? "🎨 <b>Teinture de barbe</b> : couvre le gris ou redéfinit le contour, 15–30 min."
+      : "🎨 <b>Beard tint</b>: grey coverage or sharper definition, 15–30 min.");
+  }
+  /* facial */
+  if(has(s,['facial','soin','visage'])){
+    return botSay(lang==='fr'
+      ? "✨ <b>Facial complet</b> : exfoliation vapeur, serviettes chaudes et froides, masque, hydratant — 30 min."
+      : "✨ <b>Full facial</b>: steam exfoliation, hot & cold towels, mask, moisturizer — 30 min.");
+  }
+  /* santiago */
+  if(has(s,['santiago','patron','owner','proprio','barbier','barber','malo'])){
+    return botSay(lang==='fr'
+      ? "💈 <b>Santiago Vinces</b> — le patron, maître barbier et perfectionniste. Les clients disent : « Santiago is super nice and his price is fair. »"
+      : "💈 <b>Santiago Vinces</b> — the owner, master barber, perfectionist. Clients say: « Santiago is super nice and his Price is fair. »");
+  }
+  /* walk-in */
+  if(has(s,['sans rendez','walk-in','walkin','sans rdv'])){
+    return botSay(lang==='fr'
+      ? "🚶 Pas besoin de rendez-vous — les <b>walk-ins sont les bienvenus</b>, comme écrit sur l'ardoise du trottoir : <i>sans rendez-vous</i>!"
+      : "🚶 No appointment needed — <b>walk-ins welcome</b>, just like the sidewalk board says: <i>sans rendez-vous</i>!");
+  }
+  /* spanish */
+  if(has(s,['espagnol','spanish','hablamos','espanol'])){
+    return botSay("¡<b>Hablamos español</b>! 🇪🇸 "+(lang==='fr'?"Ici on parle français, anglais et espagnol.":"We speak French, English and Spanish here."));
+  }
+  /* greeting */
+  if(has(s,['bonjour','hello','salut',' allo ',' hi ','hey','yo ','bonsoir'])){
+    botSay(greet()); setTimeout(()=>showChips(chipsMain()), 700); return;
+  }
+  /* fallback */
+  botSay(lang==='fr'
+    ? "Hmm, je ne suis pas sûr de bien comprendre 🤔 — le plus simple : appelez ou textez Santiago au <b>(438) 995-7921</b>, il répond vite. 💈"
+    : "Hmm, not sure I follow 🤔 — easiest: call or text Santiago at <b>(438) 995-7921</b>, he answers fast. 💈");
+}
+sendBtn.onclick = ()=>{
+  const v = chatInput.value.trim();
+  if(!v) return;
+  chatInput.value = '';
+  userSay(v);
+};
+chatInput.addEventListener('keydown', e=>{ if(e.key==='Enter') sendBtn.onclick(); });
+</script>
+</body>
+</html>
